@@ -1,0 +1,214 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "School API Documentation",
+        "description": "School API Documentation",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://127.0.0.1:8000/api",
+            "description": "local server"
+        },
+        {
+            "url": "http://staging.example.com",
+            "description": "staging server"
+        },
+        {
+            "url": "http://example.com",
+            "description": "production server"
+        }
+    ],
+    "paths": {
+        "/students": {
+            "get": {
+                "tags": [
+                    "STUDENTS"
+                ],
+                "summary": "Get all students",
+                "description": "Get list of all students.",
+                "operationId": "10a7a2748a19a0b6408ce47b4dad30cf",
+                "responses": {
+                    "200": {
+                        "description": "Students retrieved successfully"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "STUDENTS"
+                ],
+                "summary": "Create a new student",
+                "description": "Create a new student with the provided data.",
+                "operationId": "9f810050cb0d39be8467737e16f8e638",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "FirstName",
+                                    "LastName",
+                                    "School"
+                                ],
+                                "properties": {
+                                    "FirstName": {
+                                        "type": "string",
+                                        "example": "John"
+                                    },
+                                    "LastName": {
+                                        "type": "string",
+                                        "example": "Doe"
+                                    },
+                                    "School": {
+                                        "type": "string",
+                                        "example": "BCIT"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Student created successfully"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            }
+        },
+        "/students/{id}": {
+            "get": {
+                "tags": [
+                    "STUDENTS"
+                ],
+                "summary": "Get a specific student",
+                "description": "Get details of a specific student by ID.",
+                "operationId": "33fb213ca5bb7d9fcd7a5906e733fe48",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the student",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Student details retrieved successfully"
+                    },
+                    "404": {
+                        "description": "Student not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "STUDENTS"
+                ],
+                "summary": "Update a student",
+                "description": "Update details of a specific student by ID.",
+                "operationId": "3bd57a1c87d9ca62ca8cbb16712c6c13",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the student",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "FirstName",
+                                    "LastName",
+                                    "School"
+                                ],
+                                "properties": {
+                                    "FirstName": {
+                                        "type": "string",
+                                        "example": "Jane"
+                                    },
+                                    "LastName": {
+                                        "type": "string",
+                                        "example": "Smith"
+                                    },
+                                    "School": {
+                                        "type": "string",
+                                        "example": "UBC"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Student updated successfully"
+                    },
+                    "404": {
+                        "description": "Student not found"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "STUDENTS"
+                ],
+                "summary": "Delete a student",
+                "description": "Delete a specific student by ID.",
+                "operationId": "40b13ab0a3803f505f2d18906bb8bc00",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the student to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Student deleted successfully"
+                    },
+                    "404": {
+                        "description": "Student not found"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "name": "Authorization",
+                "in": "header"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "STUDENTS",
+            "description": "STUDENTS"
+        }
+    ]
+}
