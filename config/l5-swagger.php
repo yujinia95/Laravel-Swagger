@@ -78,6 +78,7 @@ return [
         ],
 
         'paths' => [
+            'base' => env('L5_SWAGGER_BASE_PATH', null),
             /*
              * Absolute path to location where parsed annotations will be stored
              */
@@ -274,38 +275,19 @@ return [
          */
         'ui' => [
             'display' => [
-                'dark_mode' => env('L5_SWAGGER_UI_DARK_MODE', false),
-                /*
-                 * Controls the default expansion setting for the operations and tags. It can be :
-                 * 'list' (expands only the tags),
-                 * 'full' (expands the tags and operations),
-                 * 'none' (expands nothing).
-                 */
-                'doc_expansion' => env('L5_SWAGGER_UI_DOC_EXPANSION', 'none'),
-
-                /**
-                 * If set, enables filtering. The top bar will show an edit box that
-                 * you can use to filter the tagged operations that are shown. Can be
-                 * Boolean to enable or disable, or a string, in which case filtering
-                 * will be enabled using that string as the filter expression. Filtering
-                 * is case-sensitive matching the filter expression anywhere inside
-                 * the tag.
-                 */
-                'filter' => env('L5_SWAGGER_UI_FILTERS', true), // true | false
+                // existing display settings...
             ],
-
             'authorization' => [
-                /*
-                 * If set to true, it persists authorization data, and it would not be lost on browser close/refresh
-                 */
-                'persist_authorization' => env('L5_SWAGGER_UI_PERSIST_AUTHORIZATION', false),
-
-                'oauth2' => [
-                    /*
-                     * If set to true, adds PKCE to AuthorizationCodeGrant flow
-                     */
-                    'use_pkce_with_authorization_code_grant' => false,
-                ],
+                // existing authorization settings...
+            ],
+            // Add this new section
+            'assets' => [
+                'base_url' => 'https://laravel-swagger-yj.azurewebsites.net/docs/asset/',
+            ],
+            // Force secure URLs
+            'urls' => [
+                'use_absolute_path' => true,
+                'force_secure' => true,
             ],
         ],
         /*
